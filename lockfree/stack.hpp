@@ -58,7 +58,7 @@ namespace lockfree {
 				value = tail_cur->data;
 			} while (!tail.compare_exchange_weak(tail_cur, node1, std::memory_order_acquire, std::memory_order_relaxed));
 			delete tail_cur;
-			return std::make_unique<T>(std::forward<T>(*value));
+			return std::unique_ptr<T>(value);
 		}
 
 	private:

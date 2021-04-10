@@ -89,7 +89,7 @@ namespace lockfree {
 				}
 			}
 			delete head_cur;
-			return std::make_unique<T>(std::forward<T>(*value));
+			return std::move(std::unique_ptr<T>(value));
 		}
 	private:
 		std::atomic<node*> head, tail;
